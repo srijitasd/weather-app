@@ -246,6 +246,18 @@ span {
   color: rgba(27, 27, 27, 0.9);
 }
 
+footer {
+  width: 90%;
+  display: grid;
+  margin: auto;
+}
+
+.footer {
+  margin-top: 1rem;
+  color: rgba(27, 27, 27, 0.8);
+  text-align: center;
+}
+
 @media only screen and (max-width: 425px) {
   header > h2 {
     margin: 0.5rem;
@@ -359,6 +371,11 @@ span {
     font-size: 1rem;
     font-weight: 600;
     color: rgba(27, 27, 27, 0.9);
+  }
+
+  .footer {
+    font-size: 1rem;
+    font-weight: 500;
   }
 }
 
