@@ -19,6 +19,9 @@
 
     <div class="body-container">
         <div class="main-container">
+            <div class="app-name">
+                <h2 style="text-align: center;">Weather-App</h2>
+            </div>
             <div class="form-container">
                 <form action="">
                     <input type="text" name="" placeholder="Enter your Address" id="">
@@ -26,8 +29,32 @@
                 </form>
             </div>
             <div class="show">
-                <h2>Experience the best real-time weather application.</h2>
-
+                <h2>Experience the best real-time weather application</h2>
+                <ul> <br>
+                    <li>
+                        <h4><u>Features</u>:-</h4>
+                    </li>
+                    <li>
+                        <h5>Real-time weather data of the entire planet.</h5>
+                    </li>
+                    <li>
+                        <h5>Unparalled accuracy to each and every data chunk.</h5>
+                    </li>
+                    <li>
+                        <h5>Fast and reliable data source to cater your need.</h5>
+                    </li>
+                </ul>
+                <ul> <br>
+                    <li>
+                        <h4><u>Bugs</u>:-</h4>
+                    </li>
+                    <li>
+                        <h5>Loading animation problem while fetching new location.</h5>
+                    </li>
+                    <li>
+                        <h5>Hourly data of old searches stacking with the new ones.</h5>
+                        <h6><i>FIX:- Reload the page after every search.</i></h6>
+                    </li>
                 </ul>
             </div>
             <div class="data-container">
@@ -61,8 +88,16 @@
                 $(".preloader").fadeOut(1000);
             });
         </script>
+        <footer>
+            <h3 class="footer">Created by Srijit Das</h3>
+            <ul>
+                <li><u>Dependancies</u> :-</li>
+                <li><a href="https://www.flaticon.com/">Flaticon</a> for icons</li>
+                <li><a href="https://www.openweathermap.org">Open Weather Map</a> for weather data</li>
+            </ul>
+        </footer>
     </div>
-    {{>footer}}
+
 </body>
 
 </html>

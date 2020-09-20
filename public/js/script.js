@@ -17,6 +17,7 @@ var cardBody;
 
 document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
+    show.style.height = "0px";
     show.style.opacity = "0";
     e.preventDefault();
 
