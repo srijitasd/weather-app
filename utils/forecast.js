@@ -18,11 +18,13 @@ const forecast = (lon, lat, callback) => {
       const feelsLike = res.body.current.feels_like;
       const humidity = res.body.current.humidity;
       const timezone = res.body.timezone;
+      const locationDate = res.body.current.dt;
       const daily = res.body.daily;
       callback("", {
         predict: predict,
         temp: temp,
         feels_like: feelsLike,
+        locationDate: locationDate,
         humidity: humidity,
         timezone: timezone,
         daily: daily,

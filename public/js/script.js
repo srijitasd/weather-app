@@ -62,7 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "linear-gradient(to bottom right,  #f6d265, #fda085)";
       img.src = "./images/cloudy.png";
     }
-    const dateToDsp = new Date();
+    const locDate = data.forecast.locationDate * 1000;
+    const dateToDsp = new Date(locDate);
     const newDate = dateToDsp.toLocaleString("en-US", {
       timeStyle: "short",
     });
