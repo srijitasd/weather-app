@@ -9,10 +9,16 @@
 .preloader {
   height: 100vh;
   width: 100%;
-  background-color: #f9f8f8;
+  background-color: #d2edf8;
   position: fixed;
   z-index: 1;
   display: grid;
+}
+
+.preloader > img {
+  height: 7rem;
+  align-self: center;
+  justify-self: center;
 }
 
 .loader {
@@ -104,7 +110,7 @@ header > h2 {
 .form-container > form > input {
   width: 100%;
   padding: 0.5rem;
-  border: 0.1rem solid black;
+  border: none;
   border-radius: 0.5rem 0rem 0rem 0.5rem;
 }
 
@@ -113,10 +119,11 @@ header > h2 {
 }
 
 .form-container > form > button {
-  background-color: orange;
+  background-color: #34cee9;
+  color: white;
   font-size: 1.2rem;
   font-weight: 600;
-  border: 0.1rem solid black;
+  border: 0.1rem solid white;
   border-left: none;
   border-radius: 0rem 0.5rem 0.5rem 0rem;
 }
