@@ -21,18 +21,16 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const location = searchField.value;
-    fetch("http://localhost:3000/weather?address=" + location).then(
-      (response) => {
-        response.json().then((data) => {
-          if (data.error) {
-            errHandler.textContent = data.error;
-          } else {
-            current(data);
-            dailyData(data);
-          }
-        });
-      }
-    );
+    fetch("/weather?address=" + location).then((response) => {
+      response.json().then((data) => {
+        if (data.error) {
+          errHandler.textContent = data.error;
+        } else {
+          current(data);
+          dailyData(data);
+        }
+      });
+    });
   });
 
   const current = (data) => {
