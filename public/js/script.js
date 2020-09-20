@@ -1,6 +1,7 @@
 const bodyStyle = document.querySelector(".body-container");
 const dataCont = document.querySelector(".data-container");
 const locName = document.querySelector(".locName");
+const dspDate = document.querySelector("#date");
 const temp = document.querySelector("#temp");
 const img = document.querySelector("img");
 const predict = document.querySelector("#prec");
@@ -61,11 +62,16 @@ document.addEventListener("DOMContentLoaded", () => {
         "linear-gradient(to bottom right,  #f6d265, #fda085)";
       img.src = "./images/cloudy.png";
     }
+    const dateToDsp = new Date();
+    const newDate = dateToDsp.toLocaleString("en-US", {
+      timeStyle: "short",
+    });
     locName.textContent = data.forecast.timezone;
     temp.textContent = data.forecast.temp;
     predict.textContent = data.forecast.predict;
     feel.textContent = "feels like " + data.forecast.feels_like + " ";
     humidity.textContent = "humidity " + data.forecast.humidity + "%";
+    dspDate.textContent = newDate;
     searchField.value = "";
   };
 
