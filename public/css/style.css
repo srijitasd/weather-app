@@ -309,6 +309,7 @@ footer {
 
 footer > ul > li {
   font-weight: 600;
+  text-align: center;
 }
 
 footer > ul > li > a {
@@ -348,6 +349,16 @@ footer > ul > li > a {
 
   .form-container > form {
     margin: 2rem;
+    grid-template-columns: 7fr 2fr;
+  }
+
+  .form-container > form > input::placeholder {
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+
+  .form-container > form > button {
+    font-size: 1rem;
   }
 
   .data-container {
@@ -463,8 +474,17 @@ footer > ul > li > a {
 
 @media only screen and (max-width: 370px) {
   .form-container > form {
-    margin: 1rem;
+    margin: 1rem 0.2rem;
     margin-top: 2rem;
+  }
+
+  .form-container > form > input::placeholder {
+    font-weight: 600;
+    font-size: 0.75rem;
+  }
+
+  .form-container > form > button {
+    font-size: 0.9rem;
   }
 
   #c-text {
