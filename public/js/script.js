@@ -23,13 +23,18 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const location = searchField.value;
+    searchField.value = "Please Wait...";
     fetch("/weather?address=" + location).then((response) => {
       response.json().then((data) => {
         if (data.error) {
           errHandler.textContent = data.error;
         } else {
-          current(data);
-          dailyData(data);
+          if ((errHandler.innerHTML = "")) {
+            errHandler.style.display = "none";
+          } else {
+            current(data);
+            dailyData(data);
+          }
         }
       });
     });
