@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       response.json().then((data) => {
         if (data.error) {
           errHandler.textContent = data.error;
+          searchField.value = "";
         } else {
           if ((errHandler.innerHTML = "")) {
             errHandler.style.display = "none";
