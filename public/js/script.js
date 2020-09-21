@@ -3,7 +3,7 @@ const dataCont = document.querySelector(".data-container");
 const locName = document.querySelector(".locName");
 const dspDate = document.querySelector("#date");
 const temp = document.querySelector("#temp");
-const img = document.querySelector("img");
+var image = document.querySelector("#img");
 const predict = document.querySelector("#prec");
 const feel = document.querySelector(".feel");
 const humidity = document.querySelector(".humidity");
@@ -40,27 +40,27 @@ document.addEventListener("DOMContentLoaded", () => {
     if (data.forecast.predict == "Haze") {
       bodyStyle.style.background =
         "linear-gradient(to right, #f0f3cc, #F6FDC2)";
-      img.src = "./images/haze.svg";
+      img.src = "images/haze.svg";
     } else if (data.forecast.predict == "Sunny") {
       bodyStyle.style.background =
         "linear-gradient(to right,  #f6d265, #fda085)";
-      img.src = "./images/sunny.svg";
+      img.src = "images/sunny.svg";
     } else if (data.forecast.predict == "Clear") {
       bodyStyle.style.background =
         "linear-gradient(to right,  #80c9f9, #6DE9FF)";
-      img.src = "./images/clear.svg";
+      img.src = "images/clear.svg";
     } else if (data.forecast.predict == "Rain") {
       bodyStyle.style.background =
         "linear-gradient(to right,  #43abf0, #589298)";
-      img.src = "./images/water-drop.svg";
+      img.src = "images/water-drop.svg";
     } else if (data.forecast.predict == "Clouds") {
       bodyStyle.style.background =
         "linear-gradient(to right,  #9dbed3, #9DA5A6)";
-      img.src = "./images/cloud.svg";
+      img.src = "images/cloud.svg";
     } else {
       bodyStyle.style.background =
         "linear-gradient(to bottom right,  #f6d265, #fda085)";
-      img.src = "./images/cloudy.png";
+      img.src = "images/clear.svg";
     }
     const locDate = data.forecast.locationDate * 1000;
     const dateToDsp = new Date(locDate);
