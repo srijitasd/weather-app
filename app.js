@@ -1,56 +1,62 @@
-const path = require("path");
-const location = require("./utils/geoCode.js");
-const weatherData = require("./utils/forecast.js");
-const yargs = require("yargs");
 const express = require("express");
-const hbs = require("hbs");
-
 const app = express();
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const hbs = require("hbs");
+const rateLimit = require("express-rate-limit");
 
-const port = process.env.PORT || 3000;
-
-const staticPath = path.join(__dirname, "./public");
-const partialsPath = path.join(__dirname, "templates/partials");
-const viewsPath = path.join(__dirname, "templates/views");
+const { geoCode, forecast } = require("./utils/utils.js");
 
 app.set("view engine", "hbs");
-app.set("views", viewsPath);
-hbs.registerPartials(partialsPath);
+app.set("views", process.cwd() + "/templates/views");
+hbs.registerPartials(process.cwd() + "/templates/partials");
 
-app.use(express.static(staticPath));
+app.use(cors());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
+app.use(express.static(process.cwd() + "/public"));
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100,
+    message: "Too many requests, please try again after few minutes",
+    standardHeaders: true,
+    legacyHeaders: false,
+  })
+);
 
 app.get("", (req, res) => {
   res.render("index");
 });
 
-app.get("/weather", (req, res) => {
-  if (!req.query.address) {
-    return res.send({
+app.post("/weather", async (req, res) => {
+  const { address } = req.body;
+  if (!address) {
+    return res.status(400).json({
       error: "please provide a location",
     });
   }
 
-  location.geoCode(req.query.address, (err, lonLat) => {
-    if (err) {
-      return res.send({
-        error: err,
-      });
-    }
+  try {
+    const { longitude, latitude, name } = await geoCode(address);
+    const data = await forecast(longitude, latitude);
 
-    weatherData.forecast(lonLat.longitude, lonLat.latitude, (err, data) => {
-      if (err) {
-        res.send({
-          error: err,
-        });
-      }
-      res.send({
-        forecast: data,
-        location: lonLat.name,
-      });
+    res.send({
+      weather: data,
+      location: name,
     });
-  });
+  } catch (error) {
+    res.status(400).send({
+      error: "unable to find location",
+    });
+  }
 });
 
-app.listen(port, () => {
-  console.log("server started at port " + port);
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, () => {
+  console.log(`server started at port ${PORT}`);
 });
