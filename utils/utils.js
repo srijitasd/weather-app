@@ -2,13 +2,13 @@ const axios = require("axios");
 
 const forecast = async (lon, lat) => {
   const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${process.env.OPENWEATHERAPI}&units=metric`;
-
   try {
     const { data } = await axios.get(url);
     const { current, timezone, daily } = data;
     return {
       forecast: current.weather[0].main,
       temperature: current.temp,
+      minMax: { max: daily[0].temp.max, min: daily[0].temp.min },
       feelsLike: current.feels_like,
       humidity: current.humidity,
       wind: current.wind_speed,

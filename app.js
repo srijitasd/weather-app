@@ -29,7 +29,7 @@ app.use(
 );
 
 app.get("", (req, res) => {
-  res.render("index");
+  res.json({ msg: "hello" });
 });
 
 app.post("/weather", async (req, res) => {
