@@ -32,7 +32,7 @@ app.get("", (req, res) => {
   res.json({ msg: "hello" });
 });
 
-app.post("/weather", async (req, res) => {
+app.post("/name", async (req, res) => {
   const { address } = req.body;
   if (!address) {
     return res.status(400).json({
