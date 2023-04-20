@@ -32,21 +32,21 @@ app.get("", (req, res) => {
   res.json({ msg: "hello" });
 });
 
-app.post("/name", async (req, res) => {
-  const { address } = req.body;
-  if (!address) {
+app.post("/weather", async (req, res) => {
+  const { location, type } = req.body;
+  if (!location) {
     return res.status(400).json({
       error: "please provide a location",
     });
   }
 
   try {
-    const { longitude, latitude, name } = await geoCode(address);
-    const data = await forecast(longitude, latitude);
+    const { latitude, longitude, name, county } = await geoCode(location, type);
+    const data = await forecast(latitude, longitude);
 
     res.send({
       weather: data,
-      location: name,
+      location: { name, county },
     });
   } catch (error) {
     res.status(400).send({

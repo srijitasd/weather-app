@@ -1,7 +1,7 @@
 const axios = require("axios");
 
-const forecast = async (lon, lat) => {
-  const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${process.env.OPENWEATHERAPI}&units=metric`;
+const forecast = async (lat, long) => {
+  const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely,hourly&appid=${process.env.OPENWEATHERAPI}&units=metric`;
   try {
     const { data } = await axios.get(url);
     const { current, timezone, daily } = data;
@@ -15,25 +15,26 @@ const forecast = async (lon, lat) => {
       timezone: timezone,
       date: current.dt,
       // daily: daily,
+      rest: data,
     };
   } catch (error) {
     console.log(error);
   }
 };
 
-const geoCode = async (address) => {
-  const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${process.env.LOCATIONAPIKEY}&limit=1`;
+const geoCode = async (address, type = "reverse") => {
+  const url = `http://api.positionstack.com/v1/${type}?access_key=${process.env.LOCATIONAPIKEY}&query=${address}&limit=1`;
 
   try {
-    const res = await axios.get(url);
-
-    if (res.data.features.length === 0) {
+    const { data: response } = await axios.get(url);
+    if (response.data === undefined || response.data.length === 0) {
       throw new error("unable to find location");
     }
     return {
-      latitude: res.data.features[0].center[1],
-      longitude: res.data.features[0].center[0],
-      name: res.data.features[0].place_name,
+      latitude: response.data[0].latitude,
+      longitude: response.data[0].longitude,
+      name: response.data[0].name,
+      county: response.data[0].county,
     };
   } catch (error) {
     console.log(error);
