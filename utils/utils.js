@@ -14,6 +14,16 @@ const forecast = async (lat, long) => {
       wind: current.wind_speed,
       timezone: timezone,
       date: current.dt,
+      // tomorrow: {
+      //   forecast: daily[1].weather[0].main,
+      // temperature: daily[1].temp,
+      // minMax: { max: daily[0].temp.max, min: daily[0].temp.min },
+      // feelsLike: current.feels_like,
+      // humidity: current.humidity,
+      // wind: current.wind_speed,
+      // timezone: timezone,
+      // date: current.dt,
+      // },
       // daily: daily,
       rest: data,
     };
